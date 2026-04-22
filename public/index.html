@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MovieMosaic — Discover. Watch. Book.</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+</head>
+<body>
+
+<!-- ─── NAVBAR ──────────────────────────────────────────────────────────────── -->
+<nav id="navbar">
+  <a class="nav-logo" onclick="navigate('home')">
+    MOVIE<span>MOSAIC</span><span class="dot">·</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" data-page="home" class="active" onclick="navigate('home');return false">Home</a></li>
+    <li><a href="#" data-page="movies" onclick="navigate('movies');return false">Movies</a></li>
+    <li><a href="#" data-page="quiz" onclick="navigate('quiz');return false">Quiz</a></li>
+    <li><a href="#" data-page="feedback" onclick="navigate('feedback');return false">Feedback</a></li>
+    <li><a href="#" data-page="profile" onclick="navigate('profile');return false">Profile</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-theme" id="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    <div id="nav-auth-area" style="display:flex;gap:8px;align-items:center"></div>
+    <div class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobile-nav">
+  <a href="#" onclick="navigate('home');return false">🏠 Home</a>
+  <a href="#" onclick="navigate('movies');return false">🎬 Movies</a>
+  <a href="#" onclick="navigate('quiz');return false">🧠 Personality Quiz</a>
+  <a href="#" onclick="navigate('feedback');return false">💬 Feedback</a>
+  <a href="#" onclick="navigate('profile');return false">👤 Profile</a>
+</div>
+
+<!-- ─── PAGES ────────────────────────────────────────────────────────────────── -->
+<main>
+
+  <!-- HOME PAGE -->
+  <div id="page-home" class="page-section active">
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-grid"></div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">Bollywood &amp; Hollywood · Curated for You</div>
+          <h1 class="hero-title">
+            <span class="line1">YOUR NEXT</span>
+            <span class="line2">FAVORITE</span>
+            <span class="line3">FILM AWAITS</span>
+          </h1>
+          <p class="hero-sub">Discover, review, and book tickets for the movies that speak to your soul — powered by personality-driven recommendations.</p>
+          <div class="hero-actions">
+            <button class="btn btn-gold btn-lg" onclick="navigate('movies')">🎬 Browse Movies</button>
+            <button class="btn btn-outline btn-lg" onclick="navigate('quiz')">🧠 Take the Quiz</button>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-num">16+</div>
+              <div class="stat-label">Curated Films</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">2</div>
+              <div class="stat-label">Industries</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">10</div>
+              <div class="stat-label">Cities</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Floating film posters -->
+      <div class="hero-films">
+        <div class="film-stack" id="hero-stack-1"></div>
+        <div class="film-stack" id="hero-stack-2"></div>
+      </div>
+    </section>
+
+    <!-- FEATURES STRIP -->
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;text-align:center">
+            <div style="font-size:32px;margin-bottom:12px">🧠</div>
+            <div style="font-family:var(--font-display);font-size:18px;margin-bottom:6px">Personality Quiz</div>
+            <div style="font-size:13px;color:var(--text-dim)">Discover your movie DNA and get tailored recommendations</div>
+          </div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;text-align:center">
+            <div style="font-size:32px;margin-bottom:12px">🎟</div>
+            <div style="font-family:var(--font-display);font-size:18px;margin-bottom:6px">Easy Booking</div>
+            <div style="font-size:13px;color:var(--text-dim)">Book tickets in seconds across 10 cities with seat selection</div>
+          </div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;text-align:center">
+            <div style="font-size:32px;margin-bottom:12px">🏷</div>
+            <div style="font-family:var(--font-display);font-size:18px;margin-bottom:6px">Reward Coupons</div>
+            <div style="font-size:13px;color:var(--text-dim)">Earn discounts by reviewing movies — the more you engage, the more you save</div>
+          </div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;text-align:center">
+            <div style="font-size:32px;margin-bottom:12px">⭐</div>
+            <div style="font-family:var(--font-display);font-size:18px;margin-bottom:6px">Community Reviews</div>
+            <div style="font-size:13px;color:var(--text-dim)">Read and write honest reviews from real movie lovers</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW COUPONS WORK -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">Rewards Program</div>
+          <h2 class="section-title">Review. Earn. <em>Save.</em></h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
+          <div style="background:linear-gradient(135deg,var(--surface),var(--surface2));border:1px dashed rgba(26,188,156,0.3);border-radius:var(--radius-lg);padding:28px">
+            <div style="font-size:28px;margin-bottom:12px">✍️</div>
+            <div style="font-family:var(--font-display);font-size:24px;color:var(--teal);margin-bottom:4px">1st REVIEW</div>
+            <div style="font-family:monospace;font-size:20px;font-weight:700;color:var(--teal);margin-bottom:8px">CRITIC10</div>
+            <div style="font-size:14px;color:var(--text-muted)">Write your first movie review and unlock a 10% discount on your next booking.</div>
+          </div>
+          <div style="background:linear-gradient(135deg,var(--surface),var(--surface2));border:1px dashed rgba(26,188,156,0.3);border-radius:var(--radius-lg);padding:28px">
+            <div style="font-size:28px;margin-bottom:12px">🎖</div>
+            <div style="font-family:var(--font-display);font-size:24px;color:var(--teal);margin-bottom:4px">3 REVIEWS</div>
+            <div style="font-family:monospace;font-size:20px;font-weight:700;color:var(--teal);margin-bottom:8px">FAN20</div>
+            <div style="font-size:14px;color:var(--text-muted)">After 3 reviews you're a dedicated fan — earn 20% off your bookings.</div>
+          </div>
+          <div style="background:linear-gradient(135deg,var(--surface),var(--surface2));border:1px dashed rgba(232,201,122,0.3);border-radius:var(--radius-lg);padding:28px">
+            <div style="font-size:28px;margin-bottom:12px">👑</div>
+            <div style="font-family:var(--font-display);font-size:24px;color:var(--gold);margin-bottom:4px">5 REVIEWS</div>
+            <div style="font-family:monospace;font-size:20px;font-weight:700;color:var(--gold);margin-bottom:8px">MOGUL30</div>
+            <div style="font-size:14px;color:var(--text-muted)">Movie Mogul status achieved — enjoy a massive 30% discount on bookings.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="padding-bottom:80px">
+      <div class="container">
+        <div style="background:linear-gradient(135deg,var(--surface2),var(--surface3));border:1px solid var(--border);border-radius:var(--radius-lg);padding:64px 48px;text-align:center;position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 100% at 50% 0%,rgba(232,201,122,0.06),transparent);pointer-events:none"></div>
+          <div style="font-family:var(--font-display);font-size:clamp(32px,5vw,56px);margin-bottom:12px;position:relative">READY TO FIND YOUR <em style="color:var(--gold)">NEXT OBSESSION?</em></div>
+          <div style="font-size:16px;color:var(--text-muted);margin-bottom:32px;font-family:var(--font-serif);font-style:italic;max-width:480px;margin-left:auto;margin-right:auto;position:relative">Take the personality quiz or dive straight into our curated collection of Bollywood &amp; Hollywood films.</div>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative">
+            <button class="btn btn-gold btn-lg" onclick="navigate('quiz')">Take the Quiz 🧠</button>
+            <button class="btn btn-outline btn-lg" onclick="navigate('movies')">Browse Movies 🎬</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- MOVIES PAGE -->
+  <div id="page-movies" class="page-section" style="padding-top:90px">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Full Collection</div>
+        <h1 class="section-title">All <em>Movies</em></h1>
+      </div>
+      <div class="movies-filters">
+        <div class="search-box">
+          <input type="text" id="movie-search" placeholder="Search movies..." autocomplete="off">
+        </div>
+        <select class="filter-select" id="movie-genre-filter">
+          <option value="">All Genres</option>
+          <option>Action</option>
+          <option>Comedy</option>
+          <option>Drama</option>
+          <option>Thriller</option>
+          <option>Romance</option>
+          <option>Sci-Fi</option>
+          <option>Fantasy</option>
+          <option>Horror</option>
+          <option>Biography</option>
+          <option>Crime</option>
+        </select>
+        <select class="filter-select" id="movie-industry-filter">
+          <option value="">All Industries</option>
+          <option>Bollywood</option>
+          <option>Hollywood</option>
+        </select>
+        <select class="filter-select" id="movie-rating-filter">
+          <option value="">Any Rating</option>
+          <option value="9">9+ ★★★★★</option>
+          <option value="8">8+ ★★★★</option>
+          <option value="7">7+ ★★★</option>
+          <option value="6">6+ ★★</option>
+        </select>
+      </div>
+      <!-- AI Library Loading Banner -->
+      <div class="ai-movies-banner" id="ai-movies-banner">
+        <div class="spinner"></div>
+        <span>✨ <strong>AI is expanding your library</strong> — fetching personalized movie suggestions...</span>
+      </div>
+      <div class="movies-grid" id="movies-grid">
+        <div class="loader"><div class="spinner"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ PAGE -->
+  <div id="page-quiz" class="page-section" style="padding-top:90px">
+    <div class="container" style="max-width:800px">
+      <div class="section-header">
+        <div class="section-label">Personality Quiz</div>
+        <h1 class="section-title">Discover Your <em>Movie DNA</em></h1>
+        <p style="color:var(--text-muted);margin-top:12px;font-family:var(--font-serif);font-style:italic">5 questions to unlock your perfect watchlist</p>
+      </div>
+      <div id="quiz-section">
+        <div id="quiz-container"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEEDBACK PAGE -->
+  <div id="page-feedback" class="page-section" style="padding-top:90px">
+    <div class="container" style="max-width:1000px">
+      <div class="section-header">
+        <div class="section-label">Share Your Voice</div>
+        <h1 class="section-title">Feedback &amp; <em>Contact</em></h1>
+      </div>
+      <div id="feedback-section">
+        <div class="feedback-layout">
+          <div class="feedback-info">
+            <div style="font-family:var(--font-display);font-size:32px;margin-bottom:16px;line-height:1">WE'D LOVE TO HEAR FROM <span style="color:var(--gold)">YOU</span></div>
+            <p style="color:var(--text-muted);font-size:14px;line-height:1.7;margin-bottom:32px">Your feedback helps us improve MovieMosaic. Tell us what you love, what could be better, and what genres excite you most.</p>
+            <div class="contact-item">
+              <div class="icon">📧</div>
+              <div><div style="font-weight:600;font-size:14px">Email</div><div style="color:var(--text-dim);font-size:13px">support@moviemosaic.in</div></div>
+            </div>
+            <div class="contact-item">
+              <div class="icon">📞</div>
+              <div><div style="font-weight:600;font-size:14px">Phone</div><div style="color:var(--text-dim);font-size:13px">+91 98765 43210</div></div>
+            </div>
+            <div class="contact-item">
+              <div class="icon">📍</div>
+              <div><div style="font-weight:600;font-size:14px">Location</div><div style="color:var(--text-dim);font-size:13px">Mumbai, Maharashtra, India</div></div>
+            </div>
+            <div class="contact-item">
+              <div class="icon">⏰</div>
+              <div><div style="font-weight:600;font-size:14px">Support Hours</div><div style="color:var(--text-dim);font-size:13px">Mon–Sat, 9 AM – 7 PM IST</div></div>
+            </div>
+          </div>
+          <div class="feedback-form-area">
+            <div id="fb-success" class="form-success" style="display:none"></div>
+            <div id="fb-error" class="form-err-banner" style="display:none"></div>
+            <form onsubmit="submitFeedback(event)">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Your Name</label>
+                  <input type="text" id="fb-name" class="form-input" placeholder="Raj Sharma" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Email Address</label>
+                  <input type="email" id="fb-email" class="form-input" placeholder="raj@example.com" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Platform Rating</label>
+                <select class="form-select" id="fb-rating" required>
+                  <option value="">Rate your experience...</option>
+                  <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+                  <option value="4">⭐⭐⭐⭐ Very Good</option>
+                  <option value="3">⭐⭐⭐ Good</option>
+                  <option value="2">⭐⭐ Fair</option>
+                  <option value="1">⭐ Poor</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Favourite Genres</label>
+                <div class="genre-checkboxes">
+                  <label class="genre-checkbox-label" data-genre="Action" onclick="toggleGenre(this)"><input type="checkbox"> Action</label>
+                  <label class="genre-checkbox-label" data-genre="Comedy" onclick="toggleGenre(this)"><input type="checkbox"> Comedy</label>
+                  <label class="genre-checkbox-label" data-genre="Drama" onclick="toggleGenre(this)"><input type="checkbox"> Drama</label>
+                  <label class="genre-checkbox-label" data-genre="Thriller" onclick="toggleGenre(this)"><input type="checkbox"> Thriller</label>
+                  <label class="genre-checkbox-label" data-genre="Romance" onclick="toggleGenre(this)"><input type="checkbox"> Romance</label>
+                  <label class="genre-checkbox-label" data-genre="Sci-Fi" onclick="toggleGenre(this)"><input type="checkbox"> Sci-Fi</label>
+                  <label class="genre-checkbox-label" data-genre="Horror" onclick="toggleGenre(this)"><input type="checkbox"> Horror</label>
+                  <label class="genre-checkbox-label" data-genre="Biography" onclick="toggleGenre(this)"><input type="checkbox"> Biography</label>
+                  <label class="genre-checkbox-label" data-genre="Fantasy" onclick="toggleGenre(this)"><input type="checkbox"> Fantasy</label>
+                  <label class="genre-checkbox-label" data-genre="Crime" onclick="toggleGenre(this)"><input type="checkbox"> Crime</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Message / Suggestions</label>
+                <textarea id="fb-message" class="form-textarea" placeholder="What do you love about MovieMosaic? What would you like to see improved?" rows="4" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center">Submit Feedback 🚀</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFILE PAGE -->
+  <div id="page-profile" class="page-section" style="padding-top:90px">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Your Account</div>
+        <h1 class="section-title">My <em>Profile</em></h1>
+      </div>
+      <div class="profile-layout">
+        <!-- Sidebar -->
+        <div class="profile-sidebar">
+          <div class="profile-avatar-section">
+            <div class="profile-avatar" id="profile-avatar">U</div>
+            <div class="profile-name" id="profile-username">Username</div>
+            <div class="profile-email" id="profile-email">email@example.com</div>
+            <div class="profile-personality" id="profile-personality-type" style="display:none">🎭 THE MAVERICK</div>
+          </div>
+          <nav class="profile-nav">
+            <div class="profile-nav-item active" data-tab="bookings" onclick="switchProfileTab('bookings')">
+              <span class="icon">🎟</span> My Bookings
+            </div>
+            <div class="profile-nav-item" data-tab="reviews" onclick="switchProfileTab('reviews')">
+              <span class="icon">✍️</span> My Reviews
+            </div>
+            <div class="profile-nav-item" data-tab="coupons" onclick="switchProfileTab('coupons')">
+              <span class="icon">🏷</span> My Coupons
+            </div>
+            <div class="profile-nav-item" data-tab="quiz" onclick="switchProfileTab('quiz');navigate('quiz')">
+              <span class="icon">🧠</span> Take Quiz
+            </div>
+          </nav>
+        </div>
+        <!-- Main panels -->
+        <div class="profile-main">
+          <div class="profile-panel active" id="panel-bookings">
+            <div class="panel-title">🎟 My Bookings</div>
+            <div id="bookings-list"><div class="loader"><div class="spinner"></div></div></div>
+          </div>
+          <div class="profile-panel" id="panel-reviews">
+            <div class="panel-title">✍️ My Reviews</div>
+            <div id="reviews-list"><div class="loader"><div class="spinner"></div></div></div>
+          </div>
+          <div class="profile-panel" id="panel-coupons">
+            <div class="panel-title">🏷 My Coupons</div>
+            <p style="font-size:14px;color:var(--text-muted);margin-bottom:16px">Review movies to earn discount coupons on future bookings!</p>
+            <div id="coupons-list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ─── FOOTER ───────────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">MOVIEMOSAIC<span style="color:var(--crimson)">·</span></div>
+        <p class="footer-about">Your cinematic companion for discovering, reviewing, and booking the best of Bollywood and Hollywood. Powered by personality, driven by passion.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="#" onclick="navigate('home');return false">Home</a></li>
+          <li><a href="#" onclick="navigate('movies');return false">Browse Movies</a></li>
+          <li><a href="#" onclick="navigate('quiz');return false">Personality Quiz</a></li>
+          <li><a href="#" onclick="navigate('feedback');return false">Feedback</a></li>
+          <li><a href="#" onclick="navigate('profile');return false">My Profile</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Info</div>
+        <ul class="footer-links">
+          <li><a href="#">About MovieMosaic</a></li>
+          <li><a href="#">How Coupons Work</a></li>
+          <li><a href="#">Cities Available</a></li>
+          <li><a href="mailto:support@moviemosaic.in">Contact Support</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 MovieMosaic. Crafted with love for film lovers by Bhoomi</span>
+      <span style="color:var(--text-dim)">Mumbai, India</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── MODALS ───────────────────────────────────────────────────────────────── -->
+
+<!-- Auth Modal -->
+<div class="modal-overlay" id="auth-modal-overlay">
+  <div class="modal" style="max-width:460px">
+    <button class="modal-close" onclick="hideAuth()">×</button>
+    <div class="auth-modal-header">
+      <div class="auth-modal-logo">MOVIEMOSAIC</div>
+      <div class="auth-modal-subtitle">Your cinematic universe awaits</div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login" onclick="switchAuthTab('login')">Login</button>
+        <button class="auth-tab" data-tab="signup" onclick="switchAuthTab('signup')">Sign Up</button>
+      </div>
+    </div>
+    <div class="auth-body">
+      <!-- Login Form -->
+      <div id="login-form">
+        <div id="login-error" class="form-err-banner" style="display:none;margin-bottom:16px"></div>
+        <form onsubmit="doLogin(event)">
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" id="login-email" class="form-input" placeholder="you@example.com" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" id="login-password" class="form-input" placeholder="Your password" required autocomplete="current-password">
+          </div>
+          <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center">Login 🎬</button>
+        </form>
+        <div class="auth-switch">Don't have an account? <a onclick="switchAuthTab('signup')">Sign up free</a></div>
+      </div>
+      <!-- Signup Form -->
+      <div id="signup-form" style="display:none">
+        <div id="signup-error" class="form-err-banner" style="display:none;margin-bottom:16px"></div>
+        <form onsubmit="doSignup(event)">
+          <div class="form-group">
+            <label class="form-label">Username</label>
+            <input type="text" id="signup-username" class="form-input" placeholder="MovieFan2024" required autocomplete="username">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" id="signup-email" class="form-input" placeholder="you@example.com" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" id="signup-password" class="form-input" placeholder="Min 6 characters" required autocomplete="new-password" minlength="6">
+          </div>
+          <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center">Create Account 🚀</button>
+        </form>
+        <div class="auth-switch">Already have an account? <a onclick="switchAuthTab('login')">Login</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Movie Detail Modal -->
+<div class="modal-overlay" id="movie-detail-overlay">
+  <div class="modal" style="max-width:700px">
+    <!-- content rendered by JS -->
+  </div>
+</div>
+
+<!-- Booking Modal -->
+<div class="modal-overlay booking-modal" id="booking-modal-overlay">
+  <div class="modal" style="max-width:540px">
+    <!-- content rendered by JS -->
+  </div>
+</div>
+
+<!-- Review Modal -->
+<div class="modal-overlay" id="review-modal-overlay">
+  <div class="modal" style="max-width:500px">
+    <!-- content rendered by JS -->
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- ─── AI CHAT WIDGET ─────────────────────────────────────────────────────── -->
+<button class="ai-chat-fab" onclick="toggleChat()" title="Chat with Mosaic AI" aria-label="Open AI assistant">🎬</button>
+
+<div class="ai-chat-panel" id="ai-chat-panel">
+  <div class="ai-chat-header">
+    <div class="ai-chat-avatar">🎬</div>
+    <div>
+      <div class="ai-chat-title">Mosaic AI</div>
+      <div class="ai-chat-sub">● Online · Film Expert</div>
+    </div>
+    <button class="ai-chat-close" onclick="toggleChat()">×</button>
+  </div>
+  <div id="chat-log"></div>
+  <div class="chat-quick-prompts">
+    <button class="chat-quick-btn" onclick="quickChat('What should I watch tonight?')">🌙 Tonight's pick</button>
+    <button class="chat-quick-btn" onclick="quickChat('Best Bollywood movies of 2024?')">🎬 Best Bollywood</button>
+    <button class="chat-quick-btn" onclick="quickChat('Hidden gem Hollywood films?')">💎 Hidden gems</button>
+    <button class="chat-quick-btn" onclick="quickChat('Compare RRR and Pathaan')">⚖️ Compare films</button>
+  </div>
+  <div class="ai-chat-input-area">
+    <input type="text" id="chat-input" placeholder="Ask about any movie..." maxlength="300">
+    <button class="chat-send-btn" onclick="sendChatMessage()">➤</button>
+  </div>
+</div>
+
+<script>
+function quickChat(msg) {
+  const input = document.getElementById('chat-input');
+  if (input) { input.value = msg; sendChatMessage(); }
+}
+</script>
+
+<script src="/js/app.js"></script>
+</body>
+</html>

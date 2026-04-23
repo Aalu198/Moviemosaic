@@ -1,4 +1,5 @@
 // ─── STATE ────────────────────────────────────────────────────────────────────
+const isStatic = true; 
 const State = {
   user: null,
   movies: [],
@@ -86,13 +87,36 @@ function toast(msg, type = 'info', duration = 3500) {
 }
 
 // ─── API ──────────────────────────────────────────────────────────────────────
-async function api(method, path, body) {
-  const opts = { method, headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin' };
-  if (body) opts.body = JSON.stringify(body);
-  const res = await fetch('/api' + path, opts);
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.error || 'Request failed');
-  return data;
+async function api(method, url, data) {
+  if (isStatic) {
+    console.log("Static mode:", method, url);
+
+    // fake responses so UI doesn't break
+    if (url.includes("movies")) {
+      return [
+        { title: "RRR", image: "RRR.jpg" },
+        { title: "Inception", image: "Inception.jpeg" },
+        { title: "Dangal", image: "dangal.jpg" }
+      ];
+    }
+
+    if (url.includes("auth")) {
+      return { success: true, user: { username: "DemoUser" } };
+    }
+
+    return { success: true };
+  }
+
+  // REAL backend (your original code)
+  const res = await fetch(`/api${url}`, {
+    method,
+    headers: { 'Content-Type': 'application/json' },
+    body: data ? JSON.stringify(data) : undefined
+  });
+
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.error || 'Request failed');
+  return json;
 }
 
 // ─── NAVIGATION ───────────────────────────────────────────────────────────────

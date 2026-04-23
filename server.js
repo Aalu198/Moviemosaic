@@ -16,7 +16,7 @@ app.use(session({
   saveUninitialized: false,
   cookie: { secure: false, maxAge: 7 * 24 * 60 * 60 * 1000 }
 }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname));
 
 // ─── ROUTES ───────────────────────────────────────────────────────────────────
 app.use('/api/auth', require('./routes/auth'));
@@ -27,8 +27,8 @@ app.use('/api/feedback', require('./routes/feedback'));
 app.use('/api/ai', require('./routes/ai'));
 
 // ─── SERVE FRONTEND ───────────────────────────────────────────────────────────
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // ─── START ────────────────────────────────────────────────────────────────────

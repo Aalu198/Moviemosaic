@@ -91,23 +91,63 @@ async function api(method, url, data) {
   if (isStatic) {
     console.log("Static mode:", method, url);
 
-    // fake responses so UI doesn't break
+    // 🎬 MOVIES
     if (url.includes("movies")) {
-      return [
-        { title: "RRR", image: "RRR.jpg" },
-        { title: "Inception", image: "Inception.jpeg" },
-        { title: "Dangal", image: "dangal.jpg" }
-      ];
+      return {
+        movies: [
+          {
+            id: 1,
+            title: "RRR",
+            poster: "RRR.jpg",
+            rating: 8.5,
+            year: 2022,
+            duration: "3h",
+            genre: "Action",
+            industry: "Bollywood"
+          },
+          {
+            id: 2,
+            title: "Inception",
+            poster: "Inception.jpeg",
+            rating: 8.8,
+            year: 2010,
+            duration: "2h 28m",
+            genre: "Sci-Fi",
+            industry: "Hollywood"
+          },
+          {
+            id: 3,
+            title: "3 Idiots",
+            poster: "3 idiots.jpeg",
+            rating: 9.0,
+            year: 2009,
+            duration: "2h 50m",
+            genre: "Comedy",
+            industry: "Bollywood"
+          }
+        ]
+      };
     }
 
+    // 🔐 AUTH (fake login)
     if (url.includes("auth")) {
-      return { success: true, user: { username: "DemoUser" } };
+      return {
+        success: true,
+        user: {
+          id: 1,
+          username: "DemoUser",
+          email: "demo@mail.com",
+          coupons: "[]",
+          personality_type: "THE DREAMER"
+        }
+      };
     }
 
+    // 🎟 BOOKINGS / REVIEWS / FEEDBACK
     return { success: true };
   }
 
-  // REAL backend (your original code)
+  // REAL BACKEND (unused on GitHub Pages)
   const res = await fetch(`/api${url}`, {
     method,
     headers: { 'Content-Type': 'application/json' },
@@ -255,7 +295,7 @@ async function loadMovies(triggerAI = false) {
     // First time loading movies — trigger AI expansion
     if (!State.aiLibraryLoaded) {
       State.aiLibraryLoaded = true;
-      loadAIMovies();
+      //loadAIMovies();
     }
   } catch (err) {
     grid.innerHTML = `<div class="empty-state"><div class="empty-icon">⚠️</div><h3>Error loading movies</h3><p>${err.message}</p></div>`;
@@ -609,20 +649,7 @@ async function renderQuizResult() {
   `;
 
   try {
-    const existingTitles = State.movies.map(m => m.title);
-    const data = await fetch('/api/ai/quiz-recommendations', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        personalityType: result.type,
-        personalityDesc: result.desc,
-        quizAnswers: State.quizAnswers,
-        existingMovies: existingTitles,
-      })
-    }).then(r => r.json());
-
-    if (!data.success) throw new Error(data.error);
-    renderAIQuizResult(result, data.data);
+    throw new Error("Static mode");
   } catch (err) {
     // Fallback to basic result
     let recMovies = State.movies.filter(m => m.genre.includes(result.genres[0]) || m.genre.includes(result.genres[1])).slice(0,4);
